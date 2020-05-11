@@ -8,5 +8,5 @@ OpenCV_project
 <li>Extend it from images to videos</li>
 <hr>
 <h4>install step</h4>
-<li>install tesseract <a>https://github.com/tesseract-ocr/tesseract</li>
-<li>install pytesseract <div color="red">pip install pytesseract</div></li>
+<li>install tesseract https://github.com/tesseract-ocr/tesseract</li>
+<li>install pytesseract pip install pytesseract</li>
