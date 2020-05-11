@@ -5,4 +5,5 @@ from PIL import Image
 img = Image.open('./image/HelloWorld.png')
 text = tess.image_to_string(img)
 
+
 print(text)
