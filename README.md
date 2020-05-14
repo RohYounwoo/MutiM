@@ -10,3 +10,4 @@ OpenCV_project
 <h4>install step</h4>
 <li>install tesseract https://github.com/tesseract-ocr/tesseract</li>
 <li>install pytesseract pip install pytesseract</li>
+jytfy
