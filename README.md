@@ -13,5 +13,5 @@ OpenCV_project
 <li>install googletranslate: pip install googletrans</li>
 <hr>
 <h4>project preview</h4>
-<img src="./img/result1.jpg" alt="project preview image1">
-<img src="./img/result2.jpg" alt="project preview image2">
+<image src="./img/result1.jpg" alt="project preview image1">
+<image src="./img/result2.jpg" alt="project preview image2">
