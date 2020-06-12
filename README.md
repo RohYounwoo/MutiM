@@ -9,8 +9,10 @@ OpenCV_project
 <hr>
 <h4>install step</h4>
 <li>install tesseract: https://github.com/tesseract-ocr/tesseract</li>
-<li>install pytesseract pip: install pytesseract</li>
+<li>install pytesseract: pip install pytesseract</li>
 <li>install googletranslate: pip install googletrans</li>
+<li>install moviepy: pip install moviepy</li>
+<li>install pygame: pip install pygame</li>
 <hr>
 <h4>project preview</h4>
 <img src="./image/result1.jpg" alt="project preview image1">

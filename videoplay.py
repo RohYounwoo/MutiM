@@ -28,7 +28,9 @@ def readtext(img):
         C=9
     )
     '''
-    text = tess.image_to_string(img, lang="eng")
+
+    ret, img_thresh = cv2.threshold(img,200,255,cv2.THRESH_BINARY_INV)
+    text = tess.image_to_string(img_thresh, lang="eng")
     print(text)
     if text:
         trans = Translator()

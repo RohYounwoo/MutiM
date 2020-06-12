@@ -5,6 +5,9 @@ from googletrans import Translator
 from googletrans import LANGUAGES
 import numpy as np
 from PIL import ImageFont, ImageDraw, Image
+import moviepy.editor as mp # 원본 영상에서 오디오 추출
+import pygame # 영상 바로 출력을 위해
+
 
 temptxt = ""
 
@@ -43,6 +46,12 @@ def readtext(img):
     
 video = "./image/HospitalPlaylist.mp4"
 
+
+clip = mp.VideoFileClip(video)
+clip.audio.write_audiofile("./image/extract_ver2.mp3") # 음원추출. 영상당 최초 1번만 할 것
+
+
+
 cap = cv2.VideoCapture(video)
 if cap.isOpened():
    # font for korean
@@ -58,7 +67,7 @@ if cap.isOpened():
    width = int(cap.get(3)) # 가로 길이 가져오기
    height = int(cap.get(4)) # 세로 길이 가져오기 
    fcc = cv2.VideoWriter_fourcc('D', 'I', 'V', 'X') #DIVX 코덱 적용
-   out = cv2.VideoWriter('./image/saved_video.mp4', fcc, fps, (width, height))
+   out = cv2.VideoWriter('./image/saved_video_ver2.mp4', fcc, fps, (width, height))
 
    while True:
         ret, frame = cap.read()
@@ -76,7 +85,7 @@ if cap.isOpened():
                temptxt = "" # reset subtitle
                count = 0
                readtext(frame)
-            cv2.imshow("Video Player", frame)
+            #cv2.imshow("Video Player", frame)
             out.write(frame) # 영상 저장
             key = cv2.waitKey(delay) & 0xFF
 
@@ -89,4 +98,13 @@ else:
     
 cap.release()
 out.release()
+
+print("creating vid complete")
+my_clip = mp.VideoFileClip('./image/saved_video_ver2.mp4') # 새 영상 
+audio_background = mp.AudioFileClip('./image/extract_ver2.mp3') # 추출한 음원
+final_clip = my_clip.set_audio(audio_background)
+
+final_clip.preview()
+
+cv2.waitKey(0)
 cv2.destroyAllWindows()

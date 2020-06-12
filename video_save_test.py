@@ -5,6 +5,9 @@ from googletrans import Translator
 from googletrans import LANGUAGES
 import numpy as np
 from PIL import ImageFont, ImageDraw, Image
+import moviepy.editor as mp # 원본 영상에서 오디오 추출
+from mhmovie.code import * # 영상에 소리 추가
+
 
 temptxt = ""
 
@@ -42,6 +45,12 @@ def readtext(img):
 
     
 video = "./image/HospitalPlaylist.mp4"
+
+
+clip = mp.VideoFileClip(video)
+clip.audio.write_audiofile("./image/extract.mp3") # 음원추출. 영상당 최초 1번만 할 것
+
+
 
 cap = cv2.VideoCapture(video)
 if cap.isOpened():
@@ -89,4 +98,11 @@ else:
     
 cap.release()
 out.release()
+
+
+my_clip = mp.VideoFileClip('./image/saved_video.mp4') # 새 영상 
+audio_background = mp.AudioFileClip('./image/extract.mp3') # 추출한 음원
+final_clip = my_clip.set_audio(audio_background)
+final_clip.write_videofile("./image/final_saved_video.mp4") # 최종 영상
+
 cv2.destroyAllWindows()
