@@ -105,6 +105,5 @@ audio_background = mp.AudioFileClip('./image/extract_ver2.mp3') # 추출한 음�
 final_clip = my_clip.set_audio(audio_background)
 
 final_clip.preview()
-
-cv2.waitKey(0)
+pygame.quit()
 cv2.destroyAllWindows()
