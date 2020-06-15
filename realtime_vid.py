@@ -33,6 +33,7 @@ def readtext(img):
     '''
 
     ret, img_thresh = cv2.threshold(img,200,255,cv2.THRESH_BINARY_INV)
+    #cv2.imshow("Video Player", img_thresh)
     text = tess.image_to_string(img_thresh, lang="eng")
     print(text)
     if text:
