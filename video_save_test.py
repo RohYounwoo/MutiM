@@ -48,7 +48,7 @@ video = "./image/HospitalPlaylist.mp4"
 
 
 clip = mp.VideoFileClip(video)
-clip.audio.write_audiofile("./image/extract.mp3") # 음원추출. 영상당 최초 1번만 할 것
+#clip.audio.write_audiofile("./image/extract.mp3") # 음원추출. 영상당 최초 1번만 할 것
 
 
 

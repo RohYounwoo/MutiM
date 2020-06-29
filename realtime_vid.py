@@ -31,15 +31,20 @@ def readtext(img):
         C=9
     )
     '''
-
-    ret, img_thresh = cv2.threshold(img,200,255,cv2.THRESH_BINARY_INV)
+    # 쓰레시올딩을 통해 텍스트 인식 개선
+    ret, img_thresh = cv2.threshold(img,200,255,cv2.THRESH_BINARY_INV) 
     #cv2.imshow("Video Player", img_thresh)
     text = tess.image_to_string(img_thresh, lang="eng")
     print(text)
     if text:
         trans = Translator()
         t = trans.translate(
-            text, src='en', dest='ko'
+            text, src='en', dest='ja' #영어에서 일본어로 번역 
+        )
+        temptxt_ja = t.text
+        print(t.text)
+        t = trans.translate(
+            temptxt_ja, src='ja', dest='ko' # 일본어에서 한국어로 번역
         )
         temptxt = t.text
         print(t.text)
@@ -49,13 +54,13 @@ video = "./image/HospitalPlaylist.mp4"
 
 
 clip = mp.VideoFileClip(video)
-clip.audio.write_audiofile("./image/extract_ver2.mp3") # 음원추출. 영상당 최초 1번만 할 것
+#clip.audio.write_audiofile("./image/extract_ver2.mp3") # 음원추출 최초 실행시 1번만 진행
 
 
 
-cap = cv2.VideoCapture(video)
+cap = cv2.VideoCapture(video) 
 if cap.isOpened():
-   # font for korean
+   # 한국어 고딕 폰트
    b,g,r,a = 255,255,255,0
    fontpath = "./fonts/gulim.ttc"
    font = ImageFont.truetype(fontpath, 60)
@@ -82,8 +87,8 @@ if cap.isOpened():
                 frame = np.array(img_pil)
 
             count += 1
-            if count%20 == 0: # every 20 frame
-               temptxt = "" # reset subtitle
+            if count%20 == 0: # 20프레임에 한 번 실행
+               temptxt = "" # 자막 문자열 리셋
                count = 0
                readtext(frame)
             #cv2.imshow("Video Player", frame)
